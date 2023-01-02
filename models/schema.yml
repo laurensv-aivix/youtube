@@ -1,0 +1,24 @@
+
+version: 2
+
+models:
+  - name: youtube_raw
+    description: "Raw data from CSV"
+  - name: youtube_bronze
+    columns:
+    - name: videoId
+      description: "Alternative key for this table"
+      tests:
+        - unique
+        - not_null
+    - name: channelId
+      description: "Channel reference id"
+      tests:
+        - not_null
+    - name: index
+      description: "The primary key for this table"
+      tests:
+        - unique
+        - not_null
+  - name: youtube_silver_video
+  - name: youtube_silver_channel
