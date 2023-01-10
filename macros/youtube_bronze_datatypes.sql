@@ -1,0 +1,31 @@
+{% macro youtube_raw_datatypes() %}
+    {{ return( {
+        "index": "bigint",
+        "`totalviews/channelelapsedtime`": "double",
+        "channelId": "char(24)",
+        "videoCategoryId": "int",
+        "channelViewCount": "bigint",
+        "`likes/subscriber`": "double",
+        "`views/subscribers`": "double",
+        "videoCount": "int",
+        "subscriberCount": "bigint",
+        "videoId": "char(11)",
+        "`dislikes/views`": "double",
+        "channelelapsedtime": "bigint",
+        "`comments/subscriber`": "double",
+        "`likes/views`": "double",
+        "channelCommentCount": "bigint",
+        "videoViewCount": "bigint",
+        "`likes/dislikes`": "double",
+        "`comments/views`": "double",
+        "`totvideos/videocount`": "double",
+        "elapsedtime": "bigint",
+        "videoLikeCount": "bigint",
+        "videoDislikeCount": "bigint",
+        "`dislikes/subscriber`": "double",
+        "`totviews/totsubs`": "double",
+        "`views/elapsedtime`": "double",
+        "videoPublished": "date",
+        "VideoCommentCount": "bigint"
+    } ) }}
+{% endmacro %}

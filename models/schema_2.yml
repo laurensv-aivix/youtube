@@ -1,0 +1,10 @@
+
+version: 2
+
+models:
+  - name: youtube_raw
+    description: "Raw data from CSV"
+    columns:
+    - name: _c1
+      tests:
+        - not_null

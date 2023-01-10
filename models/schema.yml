@@ -2,8 +2,27 @@
 version: 2
 
 models:
-  - name: youtube_raw
-    description: "Raw data from CSV"
+  - name: youtube_silver_video
+    columns:
+    - name: id
+      tests:
+        - unique
+        - not_null
+    - name: category_id
+      tests:
+        - accepted_values:
+            values: [1, 2, 10, 15, 17, 18, 19, 20,
+                    21, 22, 23, 24, 25, 26, 27, 28,
+                    29, 30, 31, 32, 33, 34, 35, 36,
+                    37, 38, 39, 40, 41, 42, 43, 44]
+        - relationships:
+            to: ref("youtube_categories")
+            field: id
+    - name: date
+      tests:
+        - test_date_range:
+            min_date: "2010-01-01"
+
   - name: youtube_bronze
     columns:
     - name: videoId
@@ -11,6 +30,7 @@ models:
       tests:
         - unique
         - not_null
+      required: true
     - name: channelId
       description: "Channel reference id"
       tests:
@@ -20,5 +40,20 @@ models:
       tests:
         - unique
         - not_null
-  - name: youtube_silver_video
   - name: youtube_silver_channel
+    columns:
+    - name: id
+      tests:
+        - not_null
+  - name: youtube_gold_category_stats
+    columns:
+    - name: id
+      tests:
+        - not_null
+
+macros:
+  - name: youtube_raw_datatypes
+    description: "Datatypes for raw video data"
+  - name: test_date_before
+    description: "Test whether a date comes before"
+

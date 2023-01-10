@@ -1,3 +1,4 @@
+
 {{ config(
         materialized = 'table',
         file_format = 'delta'
@@ -12,3 +13,5 @@ SELECT
 	max(channelCommentCount) as comments
 FROM {{ ref('youtube_bronze') }}
 GROUP BY channelId
+
+

@@ -15,7 +15,7 @@ profile: 'youtube'
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
-seed-paths: ["static_data"]
+seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
@@ -39,9 +39,10 @@ models:
 seeds:
   youtube:
     - name: youtube_categories
-      #description: "An overview of category id's with matching category names"
+      description: "An overview of category id's with matching category names"
       config:
         +column_types:
           id: int
           name: char(30)
+
 
