@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: youtube_silver_video
+  - name: dim_youtube__videos
     columns:
     - name: id
       tests:
@@ -23,7 +23,7 @@ models:
         - test_date_range:
             min_date: "2010-01-01"
 
-  - name: youtube_bronze
+  - name: stg_youtube__raw
     columns:
     - name: videoId
       description: "Alternative key for this table"
@@ -40,12 +40,12 @@ models:
       tests:
         - unique
         - not_null
-  - name: youtube_silver_channel
+  - name: dim_youtube__channels
     columns:
     - name: id
       tests:
         - not_null
-  - name: youtube_gold_category_stats
+  - name: report_youtube__category_stats
     columns:
     - name: id
       tests:

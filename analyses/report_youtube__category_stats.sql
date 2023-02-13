@@ -8,7 +8,7 @@ with
 
 -- Import
 videos as (
-	select * from {{ ref("youtube_silver_video") }}
+	select * from {{ ref("dim_youtube__videos") }}
 ),
 
 categories as (
