@@ -1,14 +1,23 @@
 
 {{ config(severity = 'warn') }}
 
-SELECT *
-FROM {{ ref("youtube_silver_video") }}
-WHERE
-		views < 0
-	OR
-		likes < 0
-	OR
-		dislikes < 0
-	OR
-		comments < 0
+with
 
+videos as (
+	select * from {{ ref("youtube_silver_video") }}
+),
+
+negative_stats as (
+	select *
+	from videos
+	where
+			views < 0
+		or
+			likes < 0
+		or
+			dislikes < 0
+		or
+			comments < 0
+)
+
+select * from negative_stats
