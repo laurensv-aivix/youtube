@@ -8,7 +8,7 @@ with
 
 -- Import
 videos as (
-	select * from {{ ref("youtube_silver_video") }}
+	select * from {{ ref("dim_youtube__videos") }}
 ),
 
 categories as (
@@ -17,26 +17,21 @@ categories as (
 
 -- Logical
 
-aggregated as (
+final as (
 	select
-		category.name as category_name,
+		max(categories.name) as category_name,
 		count(*) as video_count,
-		avg(video.views) as video_views_avg,
-		cast(round(sum(video.views) / sum(video.likes), 0) as int) as video_like_per_view,
-		cast(round(sum(video.views) / sum(video.dislikes), 0) as int) as video_dislike_per_view,
-		round(sum(video.likes) / sum(video.dislikes), 1) as video_likes_ratio,
-		cast(round(sum(video.views) / sum(video.comments), 0) as int) as video_comments_per_view
+		avg(videos.views) as video_views_avg,
+		cast(round(sum(videos.views) / sum(videos.likes), 0) as int) as video_like_per_view,
+		cast(round(sum(videos.views) / sum(videos.dislikes), 0) as int) as video_dislike_per_view,
+		round(sum(videos.likes) / sum(videos.dislikes), 1) as video_likes_ratio,
+		cast(round(sum(videos.views) / sum(videos.comments), 0) as int) as video_comments_per_view
 	from videos
 	left join categories
-		on video.category_id = category.id
-),
-
-final as (
-	select *
-	from aggregated
-	group by category.name
+		on videos.category_id = categories.id
+	group by categories.name
 	having count(*) > 1000
-	order by likes_ratio
+	order by video_likes_ratio
 )
 
 select * from final

@@ -17,7 +17,7 @@ categories as (
 		max(subscriberCount) as subscribers,
 		max(channelViewCount) as views,
 		max(channelCommentCount) as comments
-	from channels
+	from cleaned_data
 	group by channelId
 )
 
