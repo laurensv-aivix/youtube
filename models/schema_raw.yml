@@ -8,3 +8,4 @@ models:
     - name: _c1
       tests:
         - not_null
+        - unique

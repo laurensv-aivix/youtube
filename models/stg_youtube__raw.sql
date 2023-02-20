@@ -1,5 +1,5 @@
 {{- config(
-        materialized = 'table',
+        materialized = 'view',
         file_format = 'delta'
     )
 -}}
