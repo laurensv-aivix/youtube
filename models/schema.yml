@@ -22,6 +22,8 @@ models:
       tests:
         - test_date_range:
             min_date: "2010-01-01"
+            config:
+              store_failures: true
 
   - name: stg_youtube__raw
     columns:

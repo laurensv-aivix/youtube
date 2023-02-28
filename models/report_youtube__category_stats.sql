@@ -34,5 +34,7 @@ final as (
 	order by video_likes_ratio
 )
 
+-- Output
+
 select * from final
 

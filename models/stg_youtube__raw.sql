@@ -7,11 +7,11 @@
 with
 
 raw_data as (
-    select * from {{ ref('source_youtube__raw') }}
+    select * from {{ source('source_db', 'source_youtube__raw') }}
 ),
 
 -- Cast columns to the correct data type
-named_data as (
+cast_schema as (
     select
         {%- for column, datatype in youtube_raw_datatypes().items() %}
             cast(_c{{ loop.index - 1 }} AS {{ datatype -}} ) AS {{ column }}
@@ -21,4 +21,4 @@ named_data as (
     where _c0 != 'index'
 )
 
-select * from named_data
+select * from cast_schema

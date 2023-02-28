@@ -1,6 +1,13 @@
 
 version: 2
 
+sources:
+  - name: source_db
+    database: hive_metastore
+    schema: laurens_db
+    tables:
+      - name: source_youtube__raw
+
 models:
   - name: youtube_raw
     description: "Raw data from CSV"

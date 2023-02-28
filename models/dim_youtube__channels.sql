@@ -22,5 +22,3 @@ categories as (
 )
 
 select * from categories
-
-
