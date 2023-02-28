@@ -3,6 +3,7 @@ version: 2
 
 sources:
   - name: source_db
+    description: '{{ doc("source") }}'
     database: hive_metastore
     schema: laurens_db
     tables:
