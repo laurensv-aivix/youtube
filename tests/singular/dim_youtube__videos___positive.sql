@@ -1,6 +1,7 @@
 
 {{- config(
-        severity = 'warn'
+        severity = 'warn',
+        store_failures = true
     )
 -}}
 
